@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="dartApp">
     <head>
+        <script src="bower_components/angular/angular.js"></script>
         <script src="build/darts.js"></script>
+        <script src="build/dart-control.js"></script>
+        <script src="build/dart-app.js"></script>
     </head>
-    <body>
-        <input id="dart-score"></input>
-        <button id="submit">submit</button>
-        <div id="output">
-        </div>
+    <body ng-controller="dartControl">
+    <form name="dartForm" ng-submit="vm.submitScore()">
+        <input ng-model="dartScore"></input>
+        <button type="submit">submit</button>
+    </form>
+        <p>{{ previewScore }}</p>
+        <p>{{ score }}</p>
     </body>
-    <script>
-var dartScore = document.getElementById("dart-score");
-var submit = document.getElementById("submit");
-var out = document.getElementById("output");
-
-submit.onclick = function() {
-    var s = dartScore.value;
-    console.log(s);
-    s = darts.parse_score(s);
-    out.innerText=s;
-    console.log(s)
-};
-    </script>
 </html>
