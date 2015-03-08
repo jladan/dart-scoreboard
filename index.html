@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="build/darts.js"></script>
+    </head>
+    <body>
+        <input id="dart-score"></input>
+        <button id="submit">submit</button>
+        <div id="output">
+        </div>
+    </body>
+    <script>
+var dartScore = document.getElementById("dart-score");
+var submit = document.getElementById("submit");
+var out = document.getElementById("output");
+
+submit.onclick = function() {
+    var s = dartScore.value;
+    console.log(s);
+    s = darts.parse_score(s);
+    out.innerText=s;
+    console.log(s)
+};
+    </script>
+</html>
