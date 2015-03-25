@@ -5,8 +5,9 @@ module dartApp {
         vm: DartControl;
         score: number;
         dartScore: string;
+        history: Array<[string,number,number]>;
+        preview: number;
         previewScore: number;
-
     }
     export class DartControl {
         public static $inject = [
@@ -19,13 +20,16 @@ module dartApp {
 
             $scope.score = 501
             $scope.dartScore = '';
+            $scope.history = [];
             $scope.$watch('dartScore', (ds) => {
-                $scope.previewScore = $scope.score - darts.parse_score(ds);
+                $scope.preview = darts.parse_score(ds);
+                $scope.previewScore = $scope.score - $scope.preview
             });
         }
 
         submitScore() {
             this.$scope.score -= darts.parse_score(this.$scope.dartScore);
+            this.$scope.history.push([this.$scope.dartScore, darts.parse_score(this.$scope.dartScore),this.$scope.score]);
             this.$scope.dartScore = '';
         }
 

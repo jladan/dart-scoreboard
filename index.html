@@ -10,9 +10,14 @@
     <body ng-controller="dartControl">
     <form name="dartForm" ng-submit="vm.submitScore()">
         <input ng-model="dartScore"></input>
-        <button type="submit">submit</button>
+        <button type="submit">{{ preview }}</button>
     </form>
         <p>{{ previewScore }}</p>
         <p>{{ score }}</p>
+        <table>
+            <tr ng-repeat="h in history">
+                <td>{{ $index+1 }}</td><td>{{ h[1] }}</td><td>{{ h[2] }}</td>
+            </tr>
+        </table>
     </body>
 </html>
